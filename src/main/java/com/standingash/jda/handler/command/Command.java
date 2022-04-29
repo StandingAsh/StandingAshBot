@@ -7,5 +7,5 @@ public interface Command {
 
     String getLabel();
     String getDescription();
-    void execute(Message message, CommandRegistry registry);
+    void execute(Message message);
 }

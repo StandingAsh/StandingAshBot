@@ -17,7 +17,7 @@ public class EchoCommand implements Command {
     }
 
     @Override
-    public void execute(Message message, CommandRegistry registry) {
+    public void execute(Message message) {
 
         String content = message.getContentRaw();
         String[] contentField = content.substring(2).split(" ");
