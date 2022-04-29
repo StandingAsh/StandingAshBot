@@ -16,28 +16,22 @@ import java.util.stream.Collectors;
 
 public class MessageReceivedListener extends ListenerAdapter implements CommandRegistry {
 
+    // command keyword prefix
+    private String prefix = "//";
+    private List<Command> handlers;
+
+    public MessageReceivedListener(List<Command> handlers) {
+        this.handlers = handlers;
+    }
+
     @Override
     public void register(Command command) {
-
         handlers.add(command);
     }
 
     @Override
-    public List<CommandSignature> getRegisteredSignatures() {
-
-        return handlers.stream().map(
-                Command::getSignature).collect(Collectors.toList()
-        );
-    }
-
-    // command keyword prefix
-    private String prefix = "//";
-
-    private Set<Command> handlers;
-
-    public MessageReceivedListener(Set<Command> handlers) {
-
-        this.handlers = handlers;
+    public List<Command> getRegisteredCommands() {
+        return handlers;
     }
 
     @Override
@@ -65,7 +59,7 @@ public class MessageReceivedListener extends ListenerAdapter implements CommandR
 
         // handle commands
         for (Command handler : handlers)
-            if (handler.getSignature().getLabel().equals(contentField[0]))
+            if (handler.getLabel().equals(contentField[0]))
                 handler.execute(message, this);
     }
 

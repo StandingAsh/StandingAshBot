@@ -8,7 +8,9 @@ import net.dv8tion.jda.api.JDABuilder;
 import net.dv8tion.jda.api.entities.Activity;
 
 import javax.security.auth.login.LoginException;
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 public class Main {
@@ -23,7 +25,7 @@ public class Main {
 
         api.setAutoReconnect(true);
 
-        Set<Command> handlers = new HashSet<>();
+        List<Command> handlers = new ArrayList<>();
         handlers.add(new HelpCommand());
         handlers.add(new EchoCommand());
 

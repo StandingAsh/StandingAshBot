@@ -5,6 +5,7 @@ import net.dv8tion.jda.api.entities.Message;
 
 public interface Command {
 
-    CommandSignature getSignature();
+    String getLabel();
+    String getDescription();
     void execute(Message message, CommandRegistry registry);
 }

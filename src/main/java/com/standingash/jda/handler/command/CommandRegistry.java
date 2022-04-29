@@ -7,5 +7,5 @@ import java.util.List;
 public interface CommandRegistry {
 
     void register(Command command);
-    List<CommandSignature> getRegisteredSignatures();
+    List<Command> getRegisteredCommands();
 }
