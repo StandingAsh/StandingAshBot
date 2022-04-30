@@ -1,21 +1,23 @@
-package com.standingash.jda.handler.command;
+package com.standingash.jda.command;
 
-import com.standingash.jda.valueobject.CommandSignature;
+import com.standingash.jda.core.Command;
 import net.dv8tion.jda.api.entities.Message;
 import net.dv8tion.jda.api.requests.restaction.MessageAction;
 
 public class EchoCommand implements Command {
 
     @Override
-    public CommandSignature getSignature() {
-
-        return new CommandSignature(
-                "echo", "`echo 옵션 | <reverse> <mix>` - 입력한 메시지를 따라합니다.\\n"
-        );
+    public String getLabel() {
+        return "echo";
     }
 
     @Override
-    public void execute(Message message, CommandRegistry registry) {
+    public String getDescription() {
+        return "`echo 옵션 | <reverse> <mix>` - 입력한 메시지를 따라합니다.";
+    }
+
+    @Override
+    public void execute(Message message) {
 
         String content = message.getContentRaw();
         String[] contentField = content.substring(2).split(" ");
