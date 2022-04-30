@@ -1,10 +1,12 @@
-package com.standingash.jda.handler.noncommand;
+package com.standingash.jda.noncommand;
 
+import com.standingash.jda.core.NonCommand;
 import net.dv8tion.jda.api.entities.Message;
 import net.dv8tion.jda.api.entities.User;
 import net.dv8tion.jda.api.events.message.MessageReceivedEvent;
 
 public class BasicHandler implements NonCommand {
+
     @Override
     public void execute(MessageReceivedEvent event) {
         Message message = event.getMessage();
@@ -25,6 +27,6 @@ public class BasicHandler implements NonCommand {
 
     @Override
     public String getDescription() {
-        return "\n패시브 기능:\n`Hello, 사랑해, 말? 에 대해 대답합니다.`";
+        return "`Hello, 사랑해, 말? 에 대해 대답합니다.`";
     }
 }

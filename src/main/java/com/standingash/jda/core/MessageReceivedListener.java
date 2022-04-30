@@ -1,11 +1,5 @@
-package com.standingash.jda;
+package com.standingash.jda.core;
 
-import com.standingash.jda.handler.command.Command;
-import com.standingash.jda.handler.command.CommandRegistry;
-import com.standingash.jda.handler.noncommand.BasicHandler;
-import com.standingash.jda.handler.noncommand.GrammarHandler;
-import com.standingash.jda.handler.noncommand.NonCommand;
-import com.standingash.jda.handler.noncommand.NonCommandRegistry;
 import net.dv8tion.jda.api.entities.Message;
 import net.dv8tion.jda.api.entities.User;
 import net.dv8tion.jda.api.events.message.MessageReceivedEvent;

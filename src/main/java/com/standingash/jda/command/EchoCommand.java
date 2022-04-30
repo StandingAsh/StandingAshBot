@@ -1,5 +1,6 @@
-package com.standingash.jda.handler.command;
+package com.standingash.jda.command;
 
+import com.standingash.jda.core.Command;
 import net.dv8tion.jda.api.entities.Message;
 import net.dv8tion.jda.api.requests.restaction.MessageAction;
 
@@ -12,7 +13,7 @@ public class EchoCommand implements Command {
 
     @Override
     public String getDescription() {
-        return "`echo 옵션 | <reverse> <mix>` - 입력한 메시지를 따라합니다.\n";
+        return "`echo 옵션 | <reverse> <mix>` - 입력한 메시지를 따라합니다.";
     }
 
     @Override

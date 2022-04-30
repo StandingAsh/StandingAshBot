@@ -1,4 +1,4 @@
-package com.standingash.jda.handler.noncommand;
+package com.standingash.jda.core;
 
 import java.util.List;
 

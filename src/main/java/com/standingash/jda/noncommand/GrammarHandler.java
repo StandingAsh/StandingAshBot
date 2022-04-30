@@ -1,5 +1,6 @@
-package com.standingash.jda.handler.noncommand;
+package com.standingash.jda.noncommand;
 
+import com.standingash.jda.core.NonCommand;
 import net.dv8tion.jda.api.entities.Message;
 import net.dv8tion.jda.api.entities.User;
 import net.dv8tion.jda.api.events.message.MessageReceivedEvent;
@@ -33,7 +34,7 @@ public class GrammarHandler implements NonCommand {
 
     @Override
     public String getDescription() {
-        return "\n패시브 기능:\n`되, 돼, 됬 만큼은 칼같이 잡아줍니다.`";
+        return "`되, 돼, 됬 만큼은 칼같이 잡아줍니다.`";
     }
 
     // 되, 돼 맞춤법 검사

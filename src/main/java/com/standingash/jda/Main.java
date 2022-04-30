@@ -1,22 +1,13 @@
 package com.standingash.jda;
 
-import com.standingash.jda.handler.command.Command;
-import com.standingash.jda.handler.command.CommandRegistry;
-import com.standingash.jda.handler.command.EchoCommand;
-import com.standingash.jda.handler.command.HelpCommand;
-import com.standingash.jda.handler.noncommand.BasicHandler;
-import com.standingash.jda.handler.noncommand.GrammarHandler;
-import com.standingash.jda.handler.noncommand.NonCommandRegistry;
-import jdk.nashorn.internal.scripts.JD;
+import com.standingash.jda.core.MessageReceivedListener;
+import com.standingash.jda.command.EchoCommand;
+import com.standingash.jda.command.HelpCommand;
+import com.standingash.jda.noncommand.BasicHandler;
+import com.standingash.jda.noncommand.GrammarHandler;
 import net.dv8tion.jda.api.JDA;
 import net.dv8tion.jda.api.JDABuilder;
 import net.dv8tion.jda.api.entities.Activity;
-
-import javax.security.auth.login.LoginException;
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
 
 public class Main {
 

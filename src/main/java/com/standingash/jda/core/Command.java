@@ -1,4 +1,4 @@
-package com.standingash.jda.handler.command;
+package com.standingash.jda.core;
 
 import net.dv8tion.jda.api.entities.Message;
 
