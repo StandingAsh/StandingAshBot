@@ -35,7 +35,7 @@ public class HelpCommand implements Command {
             replyAction.append('\n');
         }
 
-        replyAction.append("\n패시브 기능:\n)");
+        replyAction.append("\n패시브 기능:\n");
         for (NonCommand n : this.nonCommandRegistry.getRegisteredNonCommands()) {
             replyAction.append(n.getDescription());
             replyAction.append('\n');

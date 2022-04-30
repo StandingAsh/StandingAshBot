@@ -21,7 +21,8 @@ public class Main {
 
     private static JDA buildJDA() throws Exception {
         JDA api = JDABuilder.createDefault(
-                "OTY4MDM4MDgzNTExNTk5MTE0.YmZBuA.n6R4BZzdZxFZwO2E-u1Lzci-Yeg"
+                System.getenv("STANDING_ASH_TOKEN")
+                //"OTY4MDM4MDgzNTExNTk5MTE0.GPt1tx.EhPrbmG7Gh19WGaHX3wdDzOXjHCd5gRwIcZhMA"
         ).build();
         api.getPresence().setActivity(Activity.listening("//help 로 도움말"));
         api.setAutoReconnect(true);
