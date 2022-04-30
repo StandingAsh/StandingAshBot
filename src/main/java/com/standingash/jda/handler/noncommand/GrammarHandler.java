@@ -4,22 +4,13 @@ import net.dv8tion.jda.api.entities.Message;
 import net.dv8tion.jda.api.entities.User;
 import net.dv8tion.jda.api.events.message.MessageReceivedEvent;
 
-public class GrammarHandler implements NonCommandHandler {
-
-    private Message message;
-    private String content;
-    private User user;
-
-    public GrammarHandler(MessageReceivedEvent event) {
-
-        this.message = event.getMessage();
-        this.content = message.getContentRaw();
-        this.user = event.getAuthor();
-    }
+public class GrammarHandler implements NonCommand {
 
     @Override
-    public void execute() {
-
+    public void execute(MessageReceivedEvent event) {
+        Message message = event.getMessage();
+        String content = message.getContentRaw();
+        User user = event.getAuthor();
         // 맞춤법 검사
         if (content.contains("됬"))
             message.reply(
@@ -38,6 +29,11 @@ public class GrammarHandler implements NonCommandHandler {
                 index = content.indexOf("되", index + 1);
             }
         }
+    }
+
+    @Override
+    public String getDescription() {
+        return "\n패시브 기능:\n`되, 돼, 됬 만큼은 칼같이 잡아줍니다.`";
     }
 
     // 되, 돼 맞춤법 검사

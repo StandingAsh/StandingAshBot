@@ -4,6 +4,9 @@ import com.standingash.jda.handler.command.Command;
 import com.standingash.jda.handler.command.CommandRegistry;
 import com.standingash.jda.handler.command.EchoCommand;
 import com.standingash.jda.handler.command.HelpCommand;
+import com.standingash.jda.handler.noncommand.BasicHandler;
+import com.standingash.jda.handler.noncommand.GrammarHandler;
+import com.standingash.jda.handler.noncommand.NonCommandRegistry;
 import jdk.nashorn.internal.scripts.JD;
 import net.dv8tion.jda.api.JDA;
 import net.dv8tion.jda.api.JDABuilder;
@@ -21,6 +24,7 @@ public class Main {
         JDA api = buildJDA();
         MessageReceivedListener listener = new MessageReceivedListener();
         addCommands(listener);
+        addNonCommands(listener);
         api.addEventListener();
     }
 
@@ -37,5 +41,10 @@ public class Main {
     private static void addCommands(CommandRegistry registry) {
         registry.register(new HelpCommand(registry));
         registry.register(new EchoCommand());
+    }
+
+    private static void addNonCommands(NonCommandRegistry registry) {
+        registry.register(new BasicHandler());
+        registry.register(new GrammarHandler());
     }
 }

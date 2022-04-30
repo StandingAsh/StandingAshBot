@@ -4,6 +4,8 @@ import com.standingash.jda.handler.command.Command;
 import com.standingash.jda.handler.command.CommandRegistry;
 import com.standingash.jda.handler.noncommand.BasicHandler;
 import com.standingash.jda.handler.noncommand.GrammarHandler;
+import com.standingash.jda.handler.noncommand.NonCommand;
+import com.standingash.jda.handler.noncommand.NonCommandRegistry;
 import net.dv8tion.jda.api.entities.Message;
 import net.dv8tion.jda.api.entities.User;
 import net.dv8tion.jda.api.events.message.MessageReceivedEvent;
@@ -12,11 +14,12 @@ import net.dv8tion.jda.api.hooks.ListenerAdapter;
 import java.util.ArrayList;
 import java.util.List;
 
-public class MessageReceivedListener extends ListenerAdapter implements CommandRegistry {
+public class MessageReceivedListener extends ListenerAdapter implements CommandRegistry, NonCommandRegistry {
 
     // command keyword prefix
     private final String COMMAND_PREFIX = "//";
     private final List<Command> handlers = new ArrayList<>();
+    private final List<NonCommand> nonCommandHandlers = new ArrayList<>();
 
     @Override
     public void register(Command command) {
@@ -26,6 +29,16 @@ public class MessageReceivedListener extends ListenerAdapter implements CommandR
     @Override
     public List<Command> getRegisteredCommands() {
         return handlers;
+    }
+
+    @Override
+    public void register(NonCommand command) {
+        nonCommandHandlers.add(command);
+    }
+
+    @Override
+    public List<NonCommand> getRegisteredNonCommands() {
+        return nonCommandHandlers;
     }
 
     @Override
@@ -54,8 +67,8 @@ public class MessageReceivedListener extends ListenerAdapter implements CommandR
     }
 
     // 비명령어 처리
-    private void nonCommandContent(MessageReceivedEvent event) {
-        new BasicHandler(event).execute();
-        new GrammarHandler(event).execute();
+    public void nonCommandContent(MessageReceivedEvent event) {
+        for (NonCommand nonCommand : this.nonCommandHandlers)
+            nonCommand.execute(event);
     }
 }
