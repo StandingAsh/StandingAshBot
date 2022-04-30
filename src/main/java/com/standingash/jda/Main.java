@@ -16,7 +16,7 @@ public class Main {
         MessageReceivedListener listener = new MessageReceivedListener();
         addCommands(listener);
         addNonCommands(listener);
-        api.addEventListener();
+        api.addEventListener(listener);
     }
 
     private static JDA buildJDA() throws Exception {
