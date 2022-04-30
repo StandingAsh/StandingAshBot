@@ -38,12 +38,12 @@ public class Main {
     }
 
 
-    private static void addCommands(CommandRegistry registry) {
-        registry.register(new HelpCommand(registry));
+    private static void addCommands(MessageReceivedListener registry) {
+        registry.register(new HelpCommand(registry, registry));
         registry.register(new EchoCommand());
     }
 
-    private static void addNonCommands(NonCommandRegistry registry) {
+    private static void addNonCommands(MessageReceivedListener registry) {
         registry.register(new BasicHandler());
         registry.register(new GrammarHandler());
     }
