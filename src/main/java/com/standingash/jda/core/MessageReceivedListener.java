@@ -10,7 +10,6 @@ import java.util.List;
 
 public class MessageReceivedListener extends ListenerAdapter implements CommandRegistry, NonCommandRegistry {
 
-    // command keyword prefix
     private final String COMMAND_PREFIX = "//";
     private final List<Command> handlers = new ArrayList<>();
     private final List<NonCommand> nonCommandHandlers = new ArrayList<>();
@@ -48,19 +47,17 @@ public class MessageReceivedListener extends ListenerAdapter implements CommandR
             nonCommandContent(event);
     }
 
-    // 명령어 처리
     private void commandContent(MessageReceivedEvent event) {
         Message message = event.getMessage();
         String content = message.getContentRaw();
         String[] contentField = content.substring(2).split(" "); //커맨드는 '//' 로 시작하므로 앞 두자리를 제거
 
-        // handle commands
         for (Command handler : handlers)
-            if (handler.getLabel().equals(contentField[0]))
+            if (handler.getLabel().equals(contentField[0])) //contentField[0] := 명령어
                 handler.execute(message);
     }
 
-    // 비명령어 처리
+
     public void nonCommandContent(MessageReceivedEvent event) {
         for (NonCommand nonCommand : this.nonCommandHandlers)
             nonCommand.execute(event);
