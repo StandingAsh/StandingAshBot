@@ -9,9 +9,11 @@ public class GrammarHandler implements NonCommand {
 
     @Override
     public void execute(MessageReceivedEvent event) {
+
         Message message = event.getMessage();
         String content = message.getContentRaw();
         User user = event.getAuthor();
+
         // 맞춤법 검사
         if (content.contains("됬"))
             message.reply(
@@ -42,6 +44,6 @@ public class GrammarHandler implements NonCommand {
 
         return behind == '.' || behind == '?' || behind == ','
                 || behind == '!' || behind == '서' || behind == '야'
-                || behind == '도';
+                || behind == '도' || behind == '가';
     }
 }

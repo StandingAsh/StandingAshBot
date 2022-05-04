@@ -1,6 +1,7 @@
 package com.standingash.jda.noncommand;
 
 import com.standingash.jda.core.NonCommand;
+import net.dv8tion.jda.api.JDA;
 import net.dv8tion.jda.api.entities.Message;
 import net.dv8tion.jda.api.entities.User;
 import net.dv8tion.jda.api.events.message.MessageReceivedEvent;
@@ -9,9 +10,11 @@ public class BasicHandler implements NonCommand {
 
     @Override
     public void execute(MessageReceivedEvent event) {
+
         Message message = event.getMessage();
         String content = message.getContentRaw();
         User user = event.getAuthor();
+
         switch (content) {
             case "Hello":
                 message.reply("Hello " + user.getAsMention()).queue();

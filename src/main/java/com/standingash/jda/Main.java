@@ -1,5 +1,6 @@
 package com.standingash.jda;
 
+import com.standingash.jda.command.WeatherCommand;
 import com.standingash.jda.core.MessageReceivedListener;
 import com.standingash.jda.command.EchoCommand;
 import com.standingash.jda.command.HelpCommand;
@@ -12,14 +13,17 @@ import net.dv8tion.jda.api.entities.Activity;
 public class Main {
 
     public static void main(String[] args) throws Exception {
+
         JDA api = buildJDA();
         MessageReceivedListener listener = new MessageReceivedListener();
+
         addCommands(listener);
         addNonCommands(listener);
         api.addEventListener(listener);
     }
 
     private static JDA buildJDA() throws Exception {
+
         JDA api = JDABuilder.createDefault(
                 System.getenv("STANDING_ASH_TOKEN")
         ).build();
@@ -30,11 +34,14 @@ public class Main {
 
 
     private static void addCommands(MessageReceivedListener registry) {
+
         registry.register(new HelpCommand(registry, registry));
         registry.register(new EchoCommand());
+        registry.register(new WeatherCommand());
     }
 
     private static void addNonCommands(MessageReceivedListener registry) {
+
         registry.register(new BasicHandler());
         registry.register(new GrammarHandler());
     }

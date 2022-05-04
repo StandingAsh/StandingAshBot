@@ -4,11 +4,16 @@ import com.standingash.jda.core.Command;
 import net.dv8tion.jda.api.entities.Message;
 import net.dv8tion.jda.api.requests.restaction.MessageAction;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
 public class EchoCommand implements Command {
 
     @Override
-    public String getLabel() {
-        return "echo";
+    public List<String> getAlias() {
+        List<String> aliasList = new ArrayList<>(Arrays.asList("echo"));
+        return aliasList;
     }
 
     @Override
@@ -38,7 +43,7 @@ public class EchoCommand implements Command {
     }
 
     // 문자열 뒤집기
-    private void handleReverse(Message message, String[] contentField){
+    private void handleReverse(Message message, String[] contentField) {
 
         StringBuilder stringBuilder = new StringBuilder(contentField[2]);
 
@@ -50,7 +55,7 @@ public class EchoCommand implements Command {
     }
 
     // 문자열 교차 섞기
-    private void handleMix(Message message, String[] contentField){
+    private void handleMix(Message message, String[] contentField) {
 
         if (contentField.length != 4)
             message.reply("`echo <mix> <단어1> <단어2>` 의 형식을 지켜주세요.").queue();

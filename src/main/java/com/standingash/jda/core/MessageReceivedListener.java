@@ -5,6 +5,7 @@ import net.dv8tion.jda.api.entities.User;
 import net.dv8tion.jda.api.events.message.MessageReceivedEvent;
 import net.dv8tion.jda.api.hooks.ListenerAdapter;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -36,29 +37,39 @@ public class MessageReceivedListener extends ListenerAdapter implements CommandR
 
     @Override
     public void onMessageReceived(MessageReceivedEvent event) {
+
         User user = event.getAuthor();
         if (user.isBot())
             return;
 
         String content = event.getMessage().getContentRaw();
-        if (content.startsWith(COMMAND_PREFIX))
-            commandContent(event);
+        if (content.startsWith(COMMAND_PREFIX)) {
+            try {
+                commandContent(event);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
         else
             nonCommandContent(event);
     }
 
-    private void commandContent(MessageReceivedEvent event) {
+    private void commandContent(MessageReceivedEvent event) throws IOException {
+
         Message message = event.getMessage();
         String content = message.getContentRaw();
-        String[] contentField = content.substring(2).split(" "); //커맨드는 '//' 로 시작하므로 앞 두자리를 제거
+
+        //커맨드는 '//' 로 시작하므로 앞 두자리를 제거
+        String[] contentField = content.substring(2).split(" ");
 
         for (Command handler : handlers)
-            if (handler.getLabel().equals(contentField[0])) //contentField[0] := 명령어
+            if (handler.getAlias().contains(contentField[0])) //contentField[0] := 명령어
                 handler.execute(message);
     }
 
 
-    public void nonCommandContent(MessageReceivedEvent event) {
+    private void nonCommandContent(MessageReceivedEvent event) {
+
         for (NonCommand nonCommand : this.nonCommandHandlers)
             nonCommand.execute(event);
     }

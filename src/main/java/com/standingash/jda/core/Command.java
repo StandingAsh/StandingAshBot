@@ -2,9 +2,13 @@ package com.standingash.jda.core;
 
 import net.dv8tion.jda.api.entities.Message;
 
+import java.io.IOException;
+import java.net.MalformedURLException;
+import java.util.List;
+
 public interface Command {
 
-    String getLabel();
+    List<String> getAlias();
     String getDescription();
-    void execute(Message message);
+    void execute(Message message) throws IOException;
 }
