@@ -33,7 +33,7 @@ public class HelpCommand implements Command {
 
     @Override
     public String getDescription() {
-        return "`help` - 명령어 목록을 보여줍니다. `//h, //도움, //도움말` 로도 사용 가능";
+        return "`help` - 명령어 목록을 보여줍니다. `##h, ##도움, ##도움말` 로도 사용 가능";
     }
 
     @Override

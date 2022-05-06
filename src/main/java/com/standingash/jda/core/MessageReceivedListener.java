@@ -4,6 +4,7 @@ import net.dv8tion.jda.api.entities.Message;
 import net.dv8tion.jda.api.entities.User;
 import net.dv8tion.jda.api.events.message.MessageReceivedEvent;
 import net.dv8tion.jda.api.hooks.ListenerAdapter;
+import org.json.simple.parser.ParseException;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -11,7 +12,7 @@ import java.util.List;
 
 public class MessageReceivedListener extends ListenerAdapter implements CommandRegistry, NonCommandRegistry {
 
-    private final String COMMAND_PREFIX = "//";
+    private final String COMMAND_PREFIX = "##";
     private final List<Command> handlers = new ArrayList<>();
     private final List<NonCommand> nonCommandHandlers = new ArrayList<>();
 
@@ -46,7 +47,7 @@ public class MessageReceivedListener extends ListenerAdapter implements CommandR
         if (content.startsWith(COMMAND_PREFIX)) {
             try {
                 commandContent(event);
-            } catch (IOException e) {
+            } catch (IOException | ParseException e) {
                 e.printStackTrace();
             }
         }
@@ -54,7 +55,7 @@ public class MessageReceivedListener extends ListenerAdapter implements CommandR
             nonCommandContent(event);
     }
 
-    private void commandContent(MessageReceivedEvent event) throws IOException {
+    private void commandContent(MessageReceivedEvent event) throws IOException, ParseException {
 
         Message message = event.getMessage();
         String content = message.getContentRaw();

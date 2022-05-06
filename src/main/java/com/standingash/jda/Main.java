@@ -27,7 +27,7 @@ public class Main {
         JDA api = JDABuilder.createDefault(
                 System.getenv("STANDING_ASH_TOKEN")
         ).build();
-        api.getPresence().setActivity(Activity.listening("//help 로 도움말"));
+        api.getPresence().setActivity(Activity.listening("##help 로 도움말"));
         api.setAutoReconnect(true);
         return api;
     }

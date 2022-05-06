@@ -24,6 +24,7 @@ dependencies {
     testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.7.0'
     implementation("net.dv8tion:JDA:$jdaVersion")
     implementation("ch.qos.logback:logback-classic:1.2.8")
+    implementation 'com.googlecode.json-simple:json-simple:1.1.1'
 }
 
 test {
