@@ -12,8 +12,7 @@ public class EchoCommand implements Command {
 
     @Override
     public List<String> getAlias() {
-        List<String> aliasList = new ArrayList<>(Arrays.asList("echo"));
-        return aliasList;
+        return new ArrayList<>(Arrays.asList("echo"));
     }
 
     @Override

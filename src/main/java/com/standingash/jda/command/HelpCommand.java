@@ -24,11 +24,9 @@ public class HelpCommand implements Command {
 
     @Override
     public List<String> getAlias() {
-
-        List<String> aliasList = new ArrayList<>(Arrays.asList(
+        return new ArrayList<>(Arrays.asList(
                 "help", "h", "도움", "도움말"
         ));
-        return aliasList;
     }
 
     @Override
