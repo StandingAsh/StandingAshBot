@@ -1,4 +1,4 @@
-package com.standingash.jda;
+package com.standingash.jda.weather;
 
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;

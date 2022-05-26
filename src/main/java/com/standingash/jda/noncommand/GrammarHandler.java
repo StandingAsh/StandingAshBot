@@ -44,6 +44,6 @@ public class GrammarHandler implements NonCommand {
 
         return behind == '.' || behind == '?' || behind == ','
                 || behind == '!' || behind == '서' || behind == '야'
-                || behind == '도' || behind == '가';
+                || behind == '도' || behind == '가' || behind == '요';
     }
 }

@@ -1,9 +1,11 @@
 package com.standingash.jda.command;
 
-import com.standingash.jda.WeatherInfo;
+import com.standingash.jda.weather.URLGenerator;
+import com.standingash.jda.weather.WeatherInfo;
 import com.standingash.jda.core.Command;
 import net.dv8tion.jda.api.entities.Message;
 import org.json.simple.parser.ParseException;
+
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.net.*;
@@ -45,8 +47,6 @@ public class WeatherCommand implements Command {
         final String URL = "http://apis.data.go.kr/1360000/VilageFcstInfoService_2.0/getVilageFcst";
         final String SERVICE_KEY = System.getenv("WEATHER_SERVICE_KEY");
 
-        StringBuilder urlBuilder = new StringBuilder(URL);
-
         String nx = "59";
         String ny = "125";
         String date = (new SimpleDateFormat("yyyyMMdd")).format(System.currentTimeMillis());
@@ -68,23 +68,6 @@ public class WeatherCommand implements Command {
                 time = "0" + time;
         }
 
-        urlBuilder.append("?" + URLEncoder.encode("ServiceKey", "UTF-8")
-                + "=" + SERVICE_KEY);                                       // 서비스 키
-        urlBuilder.append("&" + URLEncoder.encode("pageNo", "UTF-8")
-                + "=" + URLEncoder.encode("1", "UTF-8"));            // 페이지 수
-        urlBuilder.append("&" + URLEncoder.encode("numOfRows", "UTF-8")
-                + "=" + URLEncoder.encode("12", "UTF-8"));          // 한 페이지 결과 수
-        urlBuilder.append("&" + URLEncoder.encode("dataType", "UTF-8")
-                + "=" + URLEncoder.encode("JSON", "UTF-8"));         // 타입
-        urlBuilder.append("&" + URLEncoder.encode("base_date", "UTF-8")
-                + "=" + URLEncoder.encode(date, "UTF-8"));              // 날짜
-        urlBuilder.append("&" + URLEncoder.encode("base_time", "UTF-8")
-                + "=" + URLEncoder.encode(time, "UTF-8"));              // 시간 AM 02시부터 3시간 단위
-        urlBuilder.append("&" + URLEncoder.encode("nx", "UTF-8")
-                + "=" + URLEncoder.encode(nx, "UTF-8"));                // 경도
-        urlBuilder.append("&" + URLEncoder.encode("ny", "UTF-8")
-                + "=" + URLEncoder.encode(ny, "UTF-8"));                // 위도
-
-        return new URL(urlBuilder.toString());
+        return new URLGenerator(nx, ny, date, time).getURL();
     }
 }
